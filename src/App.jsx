@@ -37,6 +37,11 @@ const bootsUrl = [
   'https://shima.pl/wp-content/uploads/2023/02/Blake_brown_double_1600px.webp',
   'https://shima.pl/wp-content/uploads/2023/02/Blake_black_double_1600px.webp',
   'https://shima.pl/wp-content/uploads/2023/02/thomson_men_black_double_1600px.webp',
+  'https://rebelhorn.pl/cdn/shop/files/233765_ZAL558425.jpg?v=1711451436&width=480',
+  'https://rebelhorn.pl/cdn/shop/files/RH-BOT-RANGE-01_01.jpg?v=1710331022&width=480',
+  'https://rebelhorn.pl/cdn/shop/files/Frame10_1d186954-b9c8-4978-b29d-40097a8bd496.png?v=1710329795&width=480',
+  'https://rebelhorn.pl/cdn/shop/files/Frame10_7d78a317-a3c3-4527-a426-628ec11cafd2.png?v=1710328976&width=480',
+  'https://rebelhorn.pl/cdn/shop/files/Frame6_68ea2b93-bad0-46b1-b991-237ba035be3d.jpg?v=1710328377&width=480'
 ];
 
 const pantsUrl = [
@@ -44,7 +49,10 @@ const pantsUrl = [
   'https://shima.pl/wp-content/uploads/2024/04/SHIMA_GIRO_3.0_PANTS-BLACK_FRONT.png',
   'https://shima.pl/wp-content/uploads/2024/04/SHIMA_GIRO-3.0_MEN_KHAKI_FRONT.webp',
   'https://shima.pl/wp-content/uploads/2024/02/SHIMA_JOGGSTER_KHAKI_FRONT_2500X2500.png',
-  'https://shima.pl/wp-content/uploads/2024/02/SHIMA_JOGGSTER_BLACK_FRONT_2500X2500.png'
+  'https://shima.pl/wp-content/uploads/2024/02/SHIMA_JOGGSTER_BLACK_FRONT_2500X2500.png',
+  'https://secamoto.com/wp-content/uploads/2023/12/Jeansy-Squadron-black-meskie-800x800.jpg',
+  'https://secamoto.com/wp-content/uploads/2024/10/BADLANDS-ARM-BLACK-1-800x800.jpg',
+  'https://secamoto.com/wp-content/uploads/2023/05/BADLANDS-ARM-KHAKI_1-800x800.jpg'
 ];
 
 const jacketUrl = [
@@ -54,6 +62,7 @@ const jacketUrl = [
   'https://shima.pl/wp-content/uploads/2024/01/SHIMA_RUSH_JACKET_RED_FRONT_2500X2500.png',
   'https://shima.pl/wp-content/uploads/2024/01/SHIMA_RUSH_JACKET_FLUO_FRONT_2500X2500.png',
   'https://shima.pl/wp-content/uploads/2024/01/SHIMA_RUSH_JACKET_BLACK_FRONT_2500X2500.png',
+  'https://shima.pl/wp-content/uploads/2024/04/SHIMA_Drift_men_red_front__1600x1600.webp',
   'https://shima.pl/wp-content/uploads/2024/04/SHIMA_Drift_men_red_front_-3.webp',
   'https://shima.pl/wp-content/uploads/2024/04/SHIMA_Drift_men_yellow_fluo_front__1600x1600.webp',
   'https://shima.pl/wp-content/uploads/2024/04/SHIMA_Drift_men_khaki_front_1600px.webp',
@@ -68,7 +77,8 @@ const jacketUrl = [
   'https://shima.pl/wp-content/uploads/2024/03/SHIMA_SOLID_PRO_MEN_WHITE_FRONT_2500X2500.png',
   'https://shima.pl/wp-content/uploads/2024/03/SHIMA_SOLID_PRO_MEN_BLACK_FRONT_2500X2500.png',
   'https://shima.pl/wp-content/uploads/2024/03/SHIMA_SOLID_PRO_MEN_FLUO_FRONT_2500X2500.png',
-  'https://shima.pl/wp-content/uploads/2024/03/SHIMA_SOLID_PRO_MEN_RED_FRONT_2500X2500.png'
+  'https://shima.pl/wp-content/uploads/2024/03/SHIMA_SOLID_PRO_MEN_RED_FRONT_2500X2500.png',
+  'https://secamoto.com/wp-content/uploads/2023/05/HOOLIGAN-AIR-BLACK_1.jpg'
 ]
 
 const motoUrl = [
@@ -89,37 +99,36 @@ function App() {
     <div style={{ alignItems: 'center', display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
       <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
         <div className='element'>
-          <button onClick={() => setHelmet(prev => Math.abs(prev - 1) % helmetUrl.length)}>{"<"}</button>
-          <img src={helmetUrl[helmet]} style={{ width: 150 }} />
-          <span className='counter'>{helmet + 1}/{helmetUrl.length}</span>
-          <button onClick={() => setHelmet(prev => Math.abs(prev + 1) % helmetUrl.length)}>{">"}</button>
+          <button onClick={() => setHelmet(prev => prev - 1 % helmetUrl.length)}>{"<"}</button>
+          <img src={helmetUrl[Math.abs(helmet) % helmetUrl.length]} style={{ width: 150 }} />
+          <span className='counter'>{Math.abs(helmet) % helmetUrl.length + 1}/{helmetUrl.length}</span>
+          <button onClick={() => setHelmet(prev => prev + 1 % helmetUrl.length)}>{">"}</button>
         </div>
         <div className='element'>
-          <button onClick={() => setJacket(prev => Math.abs(prev - 1) % jacketUrl.length)}>{"<"}</button>
-          <img src={jacketUrl[jacket]} style={{ width: 300 }} />
-          <span className='counter'>{jacket + 1}/{jacketUrl.length}</span>
-          <button onClick={() => setJacket(prev => Math.abs(prev + 1) % jacketUrl.length)}>{">"}</button>
+          <button onClick={() => setJacket(prev => prev - 1)}>{"<"}</button>
+          <img src={jacketUrl[Math.abs(jacket) % jacketUrl.length]} style={{ width: 300 }} />
+          <span className='counter'>{Math.abs(jacket) % jacketUrl.length + 1}/{jacketUrl.length}</span>
+          <button onClick={() => setJacket(prev => prev + 1)}>{">"}</button>
         </div>
         <div className='element'>
-          <button onClick={() => setPants(prev => Math.abs(prev - 1) % pantsUrl.length)}>{"<"}</button>
-          <img src={pantsUrl[pants]} style={{ width: 400 }} />
-          <span className='counter'>{pants + 1}/{pantsUrl.length}</span>
-          <button onClick={() => setPants(prev => Math.abs(prev + 1) % pantsUrl.length)}>{">"}</button>
+          <button onClick={() => setPants(prev => prev - 1)}>{"<"}</button>
+          <img src={pantsUrl[Math.abs(pants) % pantsUrl.length]} style={{ width: 400 }} />
+          <span className='counter'>{Math.abs(pants) % pantsUrl.length + 1}/{pantsUrl.length}</span>
+          <button onClick={() => setPants(prev => prev + 1)}>{">"}</button>
         </div>
         <div className='element'>
-          <button onClick={() => setBoots(prev => Math.abs(prev - 1) % bootsUrl.length)}>{"<"}</button>
-          <img src={bootsUrl[boots]} style={{ width: 150 }} />
-          <span className='counter'>{boots + 1}/{bootsUrl.length}</span>
-          <button onClick={() => setBoots(prev => Math.abs(prev + 1) % bootsUrl.length)}>{">"}</button>
+          <button onClick={() => setBoots(prev => prev - 1)}>{"<"}</button>
+          <img src={bootsUrl[Math.abs(boots) % bootsUrl.length]} style={{ width: 150 }} />
+          <span className='counter'>{Math.abs(boots) % bootsUrl.length + 1}/{bootsUrl.length}</span>
+          <button onClick={() => setBoots(prev => prev + 1)}>{">"}</button>
         </div>
         <div className='element'>
-          <button onClick={() => setMoto(prev => Math.abs(prev - 1) % motoUrl.length)}>{"<"}</button>
-          <img src={motoUrl[moto]} style={{ width: 500 }} />
-          <span className='counter'>{moto + 1}/{motoUrl.length}</span>
-          <button onClick={() => setMoto(prev => Math.abs(prev + 1) % motoUrl.length)}>{">"}</button>
+          <button onClick={() => setMoto(prev => prev - 1)}>{"<"}</button>
+          <img src={motoUrl[Math.abs(moto) % motoUrl.length]} style={{ width: 500 }} />
+          <span className='counter'>{Math.abs(moto) % motoUrl.length + 1}/{motoUrl.length}</span>
+          <button onClick={() => setMoto(prev => prev + 1)}>{">"}</button>
         </div>
       </div>
-      
     </div>
   )
 }
